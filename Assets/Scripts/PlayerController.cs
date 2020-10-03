@@ -3,50 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+public abstract class PlayerController : MonoBehaviour
 {
-    public float speedNormal;
-    public float speedInAir;
-    public float jumpAmount;
-    public float jumpInitialAmount;
-    public float jumpChangeTime;
+    public PlayerController transformation;
 
-    private bool inAir = true;
+    private Vector2 _direction;
+    protected Vector2 direction { get { return _direction; } }
+    protected Vector2 movement { get { return Vector2.Scale(direction, new Vector2(1, 0.5f)); } }
 
 
-    Rigidbody2D rb;
-    private void Awake()
+    protected Rigidbody2D rb;
+    protected Animator an;
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        an = GetComponent<Animator>();
+    }
+    protected virtual void Update()
+    {
+        _direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
     }
 
-    private void Update()
-    {
-        rb.AddForce(Input.GetAxis("Horizontal")* Vector2.right * (!inAir ? speedNormal : speedInAir));
-        if(Input.GetKeyDown(KeyCode.Space) && !inAir)
-        {
-            StartCoroutine(Jump());
-        }
-    }
-
-    IEnumerator Jump()
-    {
-        float jumpTime = 0;
-        rb.AddForce(Vector2.up * jumpInitialAmount, ForceMode2D.Impulse);
-        inAir = true;
-        while(Input.GetKey(KeyCode.Space) && jumpTime < jumpChangeTime)
-        {
-            rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-            jumpTime += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
-        {
-            inAir = false;
-        }
-    }
+    protected abstract PlayerController Transform();
 }
