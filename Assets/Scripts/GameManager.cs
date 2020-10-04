@@ -16,10 +16,13 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
+            Initialize();
             DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
 
-
+    private void Initialize()
+    {
+    }
 }

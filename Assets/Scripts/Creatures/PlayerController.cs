@@ -5,7 +5,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
-public abstract class PlayerController : MonoBehaviour
+
+[DefaultExecutionOrder(-10)]
+public abstract class PlayerController : Damagable
 {
     public PlayerController transformation;
 
@@ -13,19 +15,17 @@ public abstract class PlayerController : MonoBehaviour
     protected Vector2 movement { get { return Vector2.Scale(direction, new Vector2(1, 0.5f)); } }
 
     public bool controllable = true;
-
     private Vector2 _direction;
-    internal DamageVisual dv;
-    protected Rigidbody2D rb;
+
     protected Animator an;
-    protected virtual void Awake()
+    protected override void Awake()
     {
-        dv = GetComponent<DamageVisual>();
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
         an = GetComponent<Animator>();
     }
-    protected virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         _direction = controllable ? new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) : Vector2.zero;
     }
     public virtual PlayerController Transform()
@@ -34,5 +34,10 @@ public abstract class PlayerController : MonoBehaviour
         var controller = Instantiate(transformation, pivot.position, Quaternion.identity).GetComponent<PlayerController>();
         return controller;
     }
-    public virtual Transform pivot { get { return transform; } }
+    protected override void Die()
+    {
+        LevelManager.instance.GameOver();
+        base.Die();
+        controllable = false;
+    }
 }

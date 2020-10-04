@@ -38,8 +38,8 @@ public class CameraShaker : MonoBehaviour
             shake -= shakeFalloff * Time.deltaTime;
             target = (Vector2)originalPosition + Random.insideUnitCircle * shakeMagnitude*MagnitudeCurve.Evaluate(shake);
             transform.localPosition = (Vector3)Vector2.MoveTowards(transform.localPosition,
-                target, Vector2.Distance(target, transform.localPosition)
-                *shakeIntensity*IntensityCurve.Evaluate(shake)+0.001f) + new Vector3(0,0,originalPosition.z);
+                target, (Vector2.Distance(target, transform.localPosition)
+                *shakeIntensity*IntensityCurve.Evaluate(shake))*Time.deltaTime+ 0.02f) + new Vector3(0,0,originalPosition.z);
         }
     }
     public void AddShake(Vector2 position, float force)

@@ -19,6 +19,16 @@ public class CameraManager : MonoBehaviour
         instance = this;
         cam = GetComponentInChildren<Camera>();
     }
+
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            DamageManager.instance.SpawnDamage("Circle",null, mouseWorldPosition, Vector2.up, 10);
+        }
+    }
+
+
     private void LateUpdate()
     {
         if (target)

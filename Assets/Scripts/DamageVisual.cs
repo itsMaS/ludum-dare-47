@@ -31,17 +31,35 @@ public class DamageVisual : MonoBehaviour
     private Coroutine hitCoroutine;
 
     [ContextMenu("Test hit")]
-    public void Hit(Color color, AnimationCurve curve, float duration = 0.2f)
+    public void Hit(Color color, AnimationCurve curve = null, float duration = 0.2f)
     {
         if (hitCoroutine != null) StopCoroutine(hitCoroutine);
         hitCoroutine = StartCoroutine(PerformHit(duration, color, curve));
     }
+
+    Coroutine blinkCoroutine;
+
     [ContextMenu("Blink")]
     public void Blink(Color color, float duration = 2f, float blinkDuration = 0.5f, float blinkOpacity = 0.2f)
     {
         AnimationCurve pulseCurve = AnimationCurve.EaseInOut(0, 0, 1, 0);
         pulseCurve.AddKey(0.5f, blinkOpacity);
-        StartCoroutine(PerformBlinking(pulseCurve, color, duration, blinkDuration));
+        if (blinkCoroutine != null) StopCoroutine(blinkCoroutine);
+        blinkCoroutine = StartCoroutine(PerformBlinking(pulseCurve, color, duration, blinkDuration));
+    }
+    public void StopBlinking()
+    {
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            if(hitCoroutine == null)
+            {
+                foreach (var item in Materials)
+                {
+                    item.SetFloat("_OverlayLerp", 0);
+                }
+            }
+        }
     }
     IEnumerator PerformBlinking(AnimationCurve curve, Color color, float duration = 2f, float blinkDuration = 0.5f)
     {

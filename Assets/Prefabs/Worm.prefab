@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &61048835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61048836}
+  m_Layer: 8
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &61048836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61048835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.134, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 517360261}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517360260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 517360261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +56,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 61048836}
   m_Father: {fileID: 410401100112330530}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40,7 +71,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401098920916348}
   - component: {fileID: 410401098920916349}
-  m_Layer: 0
+  - component: {fileID: 1956861462}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,9 +130,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 92
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -113,6 +145,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1956861462
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401098920916351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.07
 --- !u!1 &410401098988947142
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +171,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401098988947143}
   - component: {fileID: 410401098988947140}
-  m_Layer: 0
+  - component: {fileID: 670614317}
+  m_Layer: 11
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,9 +229,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
@@ -195,6 +244,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614317
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401098988947142}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401099109305084
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +280,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401099109305085}
   - component: {fileID: 410401099109305026}
-  m_Layer: 0
+  - component: {fileID: 1808698275}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,9 +339,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 95
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -278,6 +354,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1808698275
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401099109305084}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &410401099218709980
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +380,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401099218709981}
   - component: {fileID: 410401099218709794}
-  m_Layer: 0
+  - component: {fileID: 670614310}
+  m_Layer: 11
   m_Name: Worm_3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,8 +438,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -360,6 +453,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614310
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401099218709980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.02}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.09}
+  m_EdgeRadius: 0
 --- !u!1 &410401099431320246
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +489,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401099431320247}
   - component: {fileID: 410401099431320244}
-  m_Layer: 0
+  - component: {fileID: 1564689534}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,9 +548,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 93
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -443,6 +563,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1564689534
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401099431320246}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.07
 --- !u!1 &410401099881881866
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +589,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401099881881867}
   - component: {fileID: 410401099881881864}
-  m_Layer: 0
+  - component: {fileID: 670614314}
+  m_Layer: 11
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,8 +647,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -525,6 +662,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614314
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401099881881866}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401100073501527
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +698,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100073501524}
   - component: {fileID: 410401100073501525}
-  m_Layer: 0
+  - component: {fileID: 670614309}
+  m_Layer: 11
   m_Name: Worm_3 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,8 +756,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -607,6 +771,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614309
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100073501527}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.02}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.09}
+  m_EdgeRadius: 0
 --- !u!1 &410401100112330717
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +808,8 @@ GameObject:
   - component: {fileID: 410401100112330530}
   - component: {fileID: 410401100112330528}
   - component: {fileID: 410401100112330531}
-  m_Layer: 0
+  - component: {fileID: 87394575}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,7 +871,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1409012117
   m_SortingLayer: 2
-  m_SortingOrder: 100
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -714,6 +905,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &87394575
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100112330717}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14
 --- !u!1 &410401100148910980
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +931,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100148910981}
   - component: {fileID: 410401100148910986}
-  m_Layer: 0
+  - component: {fileID: 308212849}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,9 +990,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 96
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -797,6 +1005,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &308212849
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100148910980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!1 &410401100208722501
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +1031,6 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100208722504}
   - component: {fileID: 410401100208722507}
-  - component: {fileID: 410401100208722506}
   - component: {fileID: 3913134659935444174}
   m_Layer: 0
   m_Name: Worm
@@ -851,6 +1074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06c6bf64c6dcba04ea469ae15cc2fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _target: {fileID: 61048836}
+  dv: {fileID: 0}
   transformation: {fileID: 2409225909267611697, guid: ee90911d1bbd5c14e8d97634269ca96d,
     type: 3}
   controllable: 1
@@ -903,17 +1128,6 @@ MonoBehaviour:
   - {fileID: 410401100851554772}
   - {fileID: 410401099431320247}
   - {fileID: 410401098920916348}
---- !u!210 &410401100208722506
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410401100208722501}
-  m_Enabled: 1
-  m_SortingLayerID: 1409012117
-  m_SortingLayer: 2
-  m_SortingOrder: 0
 --- !u!114 &3913134659935444174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,7 +1175,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100238423156}
   - component: {fileID: 410401100238423157}
-  m_Layer: 0
+  - component: {fileID: 670614313}
+  m_Layer: 11
   m_Name: Shadow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,8 +1233,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -1033,6 +1248,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614313
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100238423159}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401100270165392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,7 +1284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100270165393}
   - component: {fileID: 410401100270165398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Worm_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1058,7 +1299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410401100270165392}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410401100112330530}
@@ -1102,7 +1343,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1409012117
   m_SortingLayer: 2
-  m_SortingOrder: 101
+  m_SortingOrder: 0
   m_Sprite: {fileID: 2865906195106238846, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1125,7 +1366,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100312566691}
   - component: {fileID: 410401100312566688}
-  m_Layer: 0
+  - component: {fileID: 670614316}
+  m_Layer: 11
   m_Name: Shadow (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,9 +1424,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
@@ -1197,6 +1439,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614316
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100312566690}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401100426486604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1475,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100426486605}
   - component: {fileID: 410401100426486610}
-  m_Layer: 0
+  - component: {fileID: 670614311}
+  m_Layer: 11
   m_Name: Worm_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1264,8 +1533,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -1279,6 +1548,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614311
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100426486604}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.02}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.09}
+  m_EdgeRadius: 0
 --- !u!1 &410401100529394342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,7 +1584,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100529394343}
   - component: {fileID: 410401100529394340}
-  m_Layer: 0
+  - component: {fileID: 561581626}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1347,9 +1643,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 98
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1362,6 +1658,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &561581626
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100529394342}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14
 --- !u!1 &410401100575835973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,7 +1684,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100575835978}
   - component: {fileID: 410401100575835979}
-  m_Layer: 0
+  - component: {fileID: 670614315}
+  m_Layer: 11
   m_Name: Shadow (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,9 +1742,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
@@ -1444,6 +1757,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614315
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100575835973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401100702819484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1793,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100702819485}
   - component: {fileID: 410401100702819554}
-  m_Layer: 0
+  - component: {fileID: 1724384938}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,9 +1852,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 99
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -9177039919303097523, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1527,6 +1867,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &1724384938
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100702819484}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.14
 --- !u!1 &410401100800634117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1893,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100800634122}
   - component: {fileID: 410401100800634123}
-  m_Layer: 0
+  - component: {fileID: 670614312}
+  m_Layer: 11
   m_Name: Shadow (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1594,8 +1951,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1061612411
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
@@ -1609,6 +1966,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &670614312
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100800634117}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.375, y: 0.375}
+    newSize: {x: 0.375, y: 0.375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.14}
+  m_EdgeRadius: 0
 --- !u!1 &410401100851554775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,7 +2002,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100851554772}
   - component: {fileID: 410401100851554773}
-  m_Layer: 0
+  - component: {fileID: 190815384}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,9 +2061,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 94
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: -6131971823601528324, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1692,6 +2076,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &190815384
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100851554775}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.07
 --- !u!1 &410401100892808258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +2102,8 @@ GameObject:
   m_Component:
   - component: {fileID: 410401100892808259}
   - component: {fileID: 410401100892808256}
-  m_Layer: 0
+  - component: {fileID: 766355282}
+  m_Layer: 8
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1760,9 +2161,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 97
+  m_SortingLayerID: 1409012117
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7142516469680083159, guid: 8d243a6407ec7a544b3985625da5c570,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1775,3 +2176,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &766355282
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410401100892808258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
