@@ -27,13 +27,4 @@ public class Config : ScriptableObject
     public Vector2 scaleBounds;
     public float scaleOffset;
     public AnimationCurve distanceOverChildren;
-
-    [Header("Laser Robot config")]
-    public float shotDamage = 1;
-    public float shotKnockback = 2;
-    public float shotShake = 2;
-    public float shotRange = 3.72f;
-    public float shotChargeTime = 2;
-    public float shotCooldown = 0;
-    public float laserFollowSpeed = 0.2f;
 }

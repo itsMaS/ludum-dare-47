@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class LaserRobotController : EnemyController
 {
+    [Header("Parameters")]
+    public float shotDamage = 1;
+    public float shotKnockback = 2;
+    public float shotShake = 2;
+    public float shotRange = 3.72f;
+    public float shotChargeTime = 2;
+    public float shotCooldown = 0;
+    public float laserRobotHealth = 5f;
+
+    [Header("Dependancies")]
     [SerializeField] private LineRenderer lr;
     [SerializeField] private Transform eye;
     [SerializeField] GameObject chargeParticles;
@@ -12,20 +22,25 @@ public class LaserRobotController : EnemyController
 
     private Vector2 laserTarget;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         StartCoroutine(Shoot());
+        maxHealth = laserRobotHealth;
+        health = laserRobotHealth;
     }
     protected override void Update()
     {
         base.Update();
         if (playerTarget == null) return;
         lr.SetPosition(0, eye.position);
-        lr.SetPosition(1, (Vector2)eye.position + 1000 * (laserTarget - (Vector2)eye.position).normalized);
-        inRange = Vector2.Distance(eye.position, playerTarget.position) <= Config.pa.shotRange;
+        inRange = Vector2.Distance(eye.position, playerTarget.position) <= shotRange;
         lr.enabled = inRange;
-        laserTarget = Vector2.MoveTowards(laserTarget, playerTarget.position, Config.pa.laserFollowSpeed * Time.deltaTime);
+        if(!used) lr.SetPosition(1, playerTarget.position);
     }
+
+
+    bool used = false;
     IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(1, 3));
@@ -33,17 +48,17 @@ public class LaserRobotController : EnemyController
         {
             if(inRange)
             {
+                Vector2 direction = (Vector2)playerTarget.position - (Vector2)eye.position;
+                lr.SetPosition(1, (Vector2)eye.position+direction.normalized*100);
+                used = true;
                 yield return StartCoroutine(Charge());
-                if(inRange)
-                {
-                    //DamageManager.instance.SpawnDamage("Impact", this, 
-                    //    playerTarget.position, eye.transform.position - playerTarget.position, shotDamage, shotKnockback);
-                    bool hit = DamageManager.instance.Shoot(eye.position, laserTarget, Config.pa.shotDamage, Config.pa.shotKnockback, "Impact", this);
-                    CameraShaker.instance.AddShake(playerTarget.position, Config.pa.shotShake);
-                    StartCoroutine(FlashLaser(hit));
-                    yield return new WaitForSeconds(Config.pa.shotCooldown);
-                }
+                bool hit = DamageManager.instance.Shoot(eye.position, direction, shotRange, shotDamage, shotKnockback, "Impact", this);
+                CameraShaker.instance.AddShake(playerTarget.position, shotShake);
+                yield return StartCoroutine(FlashLaser(hit));
+                used = false;
+                yield return new WaitForSeconds(shotCooldown);
             }
+            lr.SetPosition(1, playerTarget.position);
             yield return null;
         }
     }
@@ -54,6 +69,7 @@ public class LaserRobotController : EnemyController
         Color c1 = lr.startColor;
         Color c2 = lr.endColor;
 
+        AudioManager.Play("Laser");
         lr.startColor = Color.white;
         lr.endColor = Color.white;
         yield return new WaitForSeconds(0.1f);
@@ -71,15 +87,15 @@ public class LaserRobotController : EnemyController
             chargeParticles.SetActive(false);
             yield break;
         }
-        yield return new WaitForSeconds(Config.pa.shotChargeTime);
+        yield return new WaitForSeconds(shotChargeTime);
         chargeParticles.SetActive(false);
     }
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(eye.position, Config.pa.shotRange);
+    //    Gizmos.DrawWireSphere(eye.position, shotRange);
     //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(eye.position, eye.position + Vector3.up * Config.pa.shotRange * 0.5f);
-    //    Gizmos.DrawLine(eye.position, eye.position + Vector3.up * Config.pa.shotRange * -0.5f);
+    //    Gizmos.DrawLine(eye.position, eye.position + Vector3.up * shotRange * 0.5f);
+    //    Gizmos.DrawLine(eye.position, eye.position + Vector3.up * shotRange * -0.5f);
     //}
 }

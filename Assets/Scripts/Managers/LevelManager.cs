@@ -71,6 +71,7 @@ public class LevelManager : MonoBehaviour
         next.maxHealth = previous.maxHealth;
         if (gameOver) yield break;
         yield return new WaitForSeconds(1f);
+        AudioManager.Play("Transformation");
         if (gameOver) yield break;
         EffectManager.instance.SpawnParticle("Explosion", previous.pivot.position+new Vector3(0,0.15f,0));
         active.transform.position = previous.pivot.position;

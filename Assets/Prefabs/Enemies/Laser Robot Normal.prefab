@@ -47,7 +47,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -284,7 +284,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 13.64
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -971,7 +971,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -4910,7 +4910,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 2.27, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.02
@@ -4942,8 +4942,8 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 0.7058824, g: 0.32156864, b: 0.32156864, a: 0.39215687}
       key1: {r: 0.7058824, g: 0.32156864, b: 0.32156864, a: 0.39215687}
-      key2: {r: 0.7058824, g: 0.32156864, b: 0.32156864, a: 0.39215687}
-      key3: {r: 0, g: 0, b: 0, a: 1}
+      key2: {r: 0.7058824, g: 0.32156864, b: 0.32156864, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0.39215687}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -4957,7 +4957,7 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
+      atime1: 59174
       atime2: 65535
       atime3: 65535
       atime4: 0
@@ -4966,7 +4966,7 @@ LineRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
@@ -5025,7 +5025,7 @@ GameObject:
   - component: {fileID: 6989520164252699927}
   - component: {fileID: 6989520164252699926}
   m_Layer: 9
-  m_Name: RobotEnemy
+  m_Name: Laser Robot Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5079,10 +5079,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f715e363324b054da40785064e30385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   maxHealth: 10
   health: 0
   _target: {fileID: 0}
   dv: {fileID: 6989520164252699926}
+  shotDamage: 1
+  shotKnockback: 2
+  shotShake: 2
+  shotRange: 8
+  shotChargeTime: 2
+  shotCooldown: 3
+  laserRobotHealth: 5
   lr: {fileID: 6989520164037372662}
   eye: {fileID: 6989520164037372656}
   chargeParticles: {fileID: 835922455}

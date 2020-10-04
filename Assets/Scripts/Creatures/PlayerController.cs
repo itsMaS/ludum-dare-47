@@ -17,6 +17,8 @@ public abstract class PlayerController : Damagable
     public bool controllable = true;
     private Vector2 _direction;
 
+    protected bool transforming = false;
+
     protected Animator an;
     protected override void Awake()
     {
@@ -30,6 +32,7 @@ public abstract class PlayerController : Damagable
     }
     public virtual PlayerController Transform()
     {
+        transforming = true;
         controllable = false;
         var controller = Instantiate(transformation, pivot.position, Quaternion.identity).GetComponent<PlayerController>();
         return controller;
@@ -39,5 +42,13 @@ public abstract class PlayerController : Damagable
         LevelManager.instance.GameOver();
         base.Die();
         controllable = false;
+    }
+    public override void TakeDamage(float amount, Vector2 source, float knockback = 1)
+    {
+        base.TakeDamage(amount, source, knockback);
+        if (health / maxHealth <= 0.3f)
+        {
+            dv.Blink(Color.red, 999);
+        }
     }
 }

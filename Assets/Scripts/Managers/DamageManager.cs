@@ -17,16 +17,16 @@ public class DamageManager : MonoBehaviour
         dmg.Initialize(amount, dealer, knockback);
         return dmg;
     }
-    public Damagable Shoot(Vector2 pos1, Vector2 pos2, float damage = 1,
+    public Damagable Shoot(Vector2 position, Vector2 direction, float distance = 1, float damage = 1,
         float knockback = 1, string particle = "Impact", Damagable dealer = null, bool penetrates = false)
     {
         List<RaycastHit2D> Hits = new List<RaycastHit2D>();
-        Physics2D.Raycast(pos1, pos2 - pos1, Config.pa.projectileMask, Hits, Vector2.Distance(pos1, pos2) + 0.5f);
+        Physics2D.Raycast(position, direction, Config.pa.projectileMask, Hits, distance);
         foreach (RaycastHit2D hit in Hits)
         {
             if(Damagable.Damagables.ContainsKey(hit.collider) && Damagable.Damagables[hit.collider] != dealer)
             {
-                SpawnDamage(particle, dealer, hit.point, pos1- hit.point, damage, knockback);
+                SpawnDamage(particle, dealer, hit.point, -direction, damage, knockback);
                 if(!penetrates) return Damagable.Damagables[hit.collider];
             }
         }

@@ -41,6 +41,7 @@ public class DamageArea : MonoBehaviour
             !AlreadyHit.Contains(Damagable.Damagables[collision]) &&
             !Excluded.Contains(Damagable.Damagables[collision]))
         {
+            AlreadyHit.Add(Damagable.Damagables[collision]);
             Damagable.Damagables[collision].TakeDamage(damage, source.position, knockback);
         }
     }
