@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Extensions
 {
-    public static void MoveDynamic(this Transform from, Vector2 to, float speed, Space space = Space.World)
+    public static void MoveDinamic(this Transform from, Vector2 to, float speed, Space space = Space.World)
     {
         if(space == Space.World)
             from.position = Vector2.MoveTowards(from.position, to,

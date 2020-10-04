@@ -5,5 +5,4 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    [SerializeField] private Slider transformationSlider;
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    public static CameraManager instance;
+
     public Transform target;
     public float followSpeed;
 
@@ -12,7 +14,6 @@ public class CameraManager : MonoBehaviour
     public Vector2 mouseWorldPosition { get { return _mouseWorldPosition; } }
     private Vector2 _mouseWorldPosition;
 
-    public static CameraManager instance;
     private void Awake()
     {
         instance = this;

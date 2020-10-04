@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,9 @@ public class SlimeController : PlayerController
     [SerializeField] private float jumpOffset;
     [SerializeField] private float jumpCooldown;
     [SerializeField] private float jumpInputThreshold;
-
+    [SerializeField] private float jumpShake;
     private bool jumping = false;
 
-    private void Start()
-    {
-        StartCoroutine(Jump());
-    }
     protected override void Update()
     {
         base.Update();
@@ -27,19 +24,15 @@ public class SlimeController : PlayerController
     {
         jumping = true;
         an.SetTrigger("Jump");
+        Vector2 tempDir = direction.normalized;
         yield return null;
         yield return new WaitForSeconds(jumpOffset);
-        rb.AddForce(Vector2.Scale(direction.normalized * jumpForce, new Vector2(1,0.5f)), ForceMode2D.Impulse);
+        rb.AddForce(Vector2.Scale(tempDir * jumpForce, new Vector2(1,0.5f)), ForceMode2D.Impulse);
         yield return new WaitForSeconds(jumpCooldown - jumpOffset);
         jumping = false;
     }
     public void Land()
     {
-        CameraShaker.instance.AddShake(transform.position, 5);
-    }
-
-    protected override PlayerController Transform()
-    {
-        throw new System.NotImplementedException();
+        CameraShaker.instance.AddShake(transform.position, jumpShake);
     }
 }

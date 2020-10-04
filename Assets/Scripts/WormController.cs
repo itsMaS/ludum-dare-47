@@ -11,6 +11,7 @@ public class WormController : PlayerController
     [SerializeField] private float scaleFrequency;
     [SerializeField] private Vector2 scaleBounds;
     [SerializeField] private float scaleOffset;
+    [SerializeField] private Transform _pivot;
 
     [SerializeField] private Transform[] Parts;
 
@@ -19,18 +20,14 @@ public class WormController : PlayerController
 
     protected override void Awake()
     {
+        base.Awake();
         rb = Parts[00].GetComponent<Rigidbody2D>();
-    }
-
-    protected override PlayerController Transform()
-    {
-        throw new System.NotImplementedException();
     }
 
     protected override void Update()
     {
         base.Update();
-        rb.AddForce(movement*speed);
+        rb.AddForce(movement*speed*Time.deltaTime);
         distance += rb.velocity.magnitude;
         Parts[0].transform.localScale = Vector3.one *
                 Mathf.Lerp(scaleBounds.x, scaleBounds.y, Mathf.InverseLerp
@@ -44,4 +41,5 @@ public class WormController : PlayerController
             Parts[i].transform.position = Vector2.MoveTowards(Parts[i].position, Parts[i - 1].position, speed);
         }
     }
+    public override Transform pivot => _pivot;
 }
