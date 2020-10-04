@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-100)]
 public class LevelManager : MonoBehaviour
 {
+    public UnityEvent onGameOver;
+
     [SerializeField] private Config gameConfiguration;
 
     public bool gameOver = false;
@@ -16,7 +18,7 @@ public class LevelManager : MonoBehaviour
 
     public float lerpRemainingTime { get { return Mathf.InverseLerp(0, transformationCooldown, remainingTime); } }
 
-    public UnityEvent onTransform;
+    public UnityAction<PlayerController> onTransform;
     public PlayerController active;
 
     public float transformationCooldown;
@@ -54,7 +56,7 @@ public class LevelManager : MonoBehaviour
                 var next = active.Transform();
                 StartCoroutine(Transformation(active, next));
                 active = next;
-                onTransform.Invoke();
+                onTransform?.Invoke(next);
                 CameraManager.instance.target = active.pivot;
             }
             yield return null;
@@ -83,11 +85,12 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
+        onGameOver?.Invoke();
         StartCoroutine(PerformGameOver());
     }
     IEnumerator PerformGameOver()
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

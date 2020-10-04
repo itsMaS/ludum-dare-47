@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : Damagable
 {
+    public Vector2Int XPWhenKilled;
+
     protected Transform playerPosition { get { return LevelManager.instance.active ? LevelManager.instance.active.pivot : null; } }
     protected Transform playerTarget { get { return LevelManager.instance.active ? LevelManager.instance.active.target : null; } }
 
@@ -15,7 +17,13 @@ public class EnemyController : Damagable
     }
     protected override void Die()
     {
-        Destroy(healthBar.gameObject);
+        XPManager.instance.GainXP(Random.Range(XPWhenKilled.x, XPWhenKilled.y));
         base.Die();
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        if(healthBar)
+        Destroy(healthBar.gameObject);
     }
 }

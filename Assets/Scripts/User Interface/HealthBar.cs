@@ -18,6 +18,6 @@ public class HealthBar : MonoBehaviour
     {
         healthBar.value = tracked.healthNormalized;
         if (!player && tracked) transform.position = (Vector2)tracked.pivot.position + Vector2.up * 1f;
-        else {tracked = tracked = LevelManager.instance.active; }
+        if (player) tracked = LevelManager.instance.active;
     }
 }

@@ -220,16 +220,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ecffeac550a4c043a52d5ed7ab0e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHealth: 10
+  health: 0
   _target: {fileID: 1750908365}
   dv: {fileID: 0}
   transformation: {fileID: 410401100208722507, guid: 2980f9e4d15a55f40a075dcd10d1f4b3,
     type: 3}
   controllable: 1
-  jumpForce: 5
-  jumpOffset: 0.2
-  jumpCooldown: 1
-  jumpInputThreshold: 0.2
-  jumpShake: 5
 --- !u!61 &2409225909267611698
 BoxCollider2D:
   m_ObjectHideFlags: 0

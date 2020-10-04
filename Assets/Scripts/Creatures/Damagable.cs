@@ -19,6 +19,8 @@ public class Damagable : MonoBehaviour
 
     public static Dictionary<Collider2D, Damagable> Damagables = new Dictionary<Collider2D, Damagable>();
 
+    protected int level { get { return XPManager.instance.level; } }
+
     public DamageVisual dv;
     protected virtual void Awake()
     {
@@ -67,7 +69,7 @@ public class Damagable : MonoBehaviour
             Damagables.Remove(item);
         }
     }
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         RemoveFromCache();
     }

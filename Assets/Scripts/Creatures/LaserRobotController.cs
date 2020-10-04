@@ -5,13 +5,14 @@ using UnityEngine;
 public class LaserRobotController : EnemyController
 {
     [Header("Parameters")]
-    public float shotDamage = 1;
-    public float shotKnockback = 2;
+
+    public AnimationCurve shotDamage;
+    public AnimationCurve shotKnockback;
+    public AnimationCurve shotRange;
+    public AnimationCurve shotChargeTime;
+    public AnimationCurve shotCooldown;
+    public AnimationCurve laserRobotHealth;
     public float shotShake = 2;
-    public float shotRange = 3.72f;
-    public float shotChargeTime = 2;
-    public float shotCooldown = 0;
-    public float laserRobotHealth = 5f;
 
     [Header("Dependancies")]
     [SerializeField] private LineRenderer lr;
@@ -26,15 +27,15 @@ public class LaserRobotController : EnemyController
     {
         base.Start();
         StartCoroutine(Shoot());
-        maxHealth = laserRobotHealth;
-        health = laserRobotHealth;
+        maxHealth = laserRobotHealth.Evaluate(level);
+        health = laserRobotHealth.Evaluate(level);
     }
     protected override void Update()
     {
         base.Update();
         if (playerTarget == null) return;
         lr.SetPosition(0, eye.position);
-        inRange = Vector2.Distance(eye.position, playerTarget.position) <= shotRange;
+        inRange = Vector2.Distance(eye.position, playerTarget.position) <= shotRange.Evaluate(level);
         lr.enabled = inRange;
         if(!used) lr.SetPosition(1, playerTarget.position);
     }
@@ -52,11 +53,11 @@ public class LaserRobotController : EnemyController
                 lr.SetPosition(1, (Vector2)eye.position+direction.normalized*100);
                 used = true;
                 yield return StartCoroutine(Charge());
-                bool hit = DamageManager.instance.Shoot(eye.position, direction, shotRange, shotDamage, shotKnockback, "Impact", this);
+                bool hit = DamageManager.instance.Shoot(eye.position, direction, shotRange.Evaluate(level), shotDamage.Evaluate(level), shotKnockback.Evaluate(level), "Impact", this);
                 CameraShaker.instance.AddShake(playerTarget.position, shotShake);
                 yield return StartCoroutine(FlashLaser(hit));
                 used = false;
-                yield return new WaitForSeconds(shotCooldown);
+                yield return new WaitForSeconds(shotCooldown.Evaluate(level));
             }
             lr.SetPosition(1, playerTarget.position);
             yield return null;
@@ -87,7 +88,7 @@ public class LaserRobotController : EnemyController
             chargeParticles.SetActive(false);
             yield break;
         }
-        yield return new WaitForSeconds(shotChargeTime);
+        yield return new WaitForSeconds(shotChargeTime.Evaluate(level));
         chargeParticles.SetActive(false);
     }
     //private void OnDrawGizmos()

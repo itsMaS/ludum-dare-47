@@ -11,9 +11,9 @@ public class ProgressionManager : MonoBehaviour
 
     public float spawnInterval;
     public float spawnRange;
-    public int amountOfEnemies;
     public float despawnRange;
 
+    public AnimationCurve amountFromLevel;
 
     public static ProgressionManager instance;
     private void Awake()
@@ -31,7 +31,7 @@ public class ProgressionManager : MonoBehaviour
         while(!LevelManager.instance.gameOver)
         {
             yield return new WaitForSeconds(spawnInterval);
-            if(Enemies.Count < amountOfEnemies)
+            if(Enemies.Count < amountFromLevel.Evaluate(XPManager.instance.level))
             {
                 var tmp = Instantiate(Enemy, (Vector2)LevelManager.instance.active.pivot.position + Random.insideUnitCircle.normalized*spawnRange,
                     Quaternion.identity).GetComponent<EnemyController>();
